@@ -1,46 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+  </head>
+  <body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <script>
+      const dogs = [
+        { name: "Snickers", age: 2 },
+        { name: "hugo", age: 8 },
+      ];
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+      function makeGreen() {
+        const p = document.querySelector("p");
+        p.style.color = "#BADA55";
+        p.style.fontSize = "50px";
+      }
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+      // Regular
+      console.log("Hello there!");
 
-    // Regular
+      // Interpolated
+      console.log("Hello %s, how are you?", "Jonatanko");
 
-    // Interpolated
+      // Styled
+      console.log(
+        "%c This is a red log!",
+        "background-color: lightblue; color: red; font-size: 2rem"
+      );
 
-    // Styled
+      // warning!
+      console.warn("%c Pay an attention! This is warning.", "font-size: 2rem");
 
-    // warning!
+      // Error :|
+      console.error("ooops");
 
-    // Error :|
+      // Info
+      console.info("This is infoooooo time");
 
-    // Info
+      // Testing
+      console.assert(1 + 1 === 3, "This is wrong");
 
-    // Testing
+      // clearing
+      console.clear();
 
-    // clearing
+      // Viewing DOM Elements
+      const par = document.querySelector("p");
+      console.log(par);
+      console.dir(document.querySelector("p"));
 
-    // Viewing DOM Elements
+      // Grouping together
+      for (let dog of dogs) {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+        console.groupEnd(`${dog.name}`);
+      }
 
-    // Grouping together
+      // counting
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("no");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("yes");
+      console.count("no");
+      console.count("yes");
+      console.count("yes");
+      console.count("no");
+      console.count("yes");
+      console.count("yes");
 
-    // counting
+      // timing
+      console.time("fetching data");
+      fetch("https://api.github.com/users/wesbos")
+        .then((data) => data.json())
+        .then((data) => {
+          console.timeEnd("fetching data");
+          console.log(data);
+        });
 
-    // timing
-
-  </script>
-</body>
+      console.time("display table");
+      console.table(dogs);
+      console.timeEnd("display table");
+    </script>
+  </body>
 </html>
